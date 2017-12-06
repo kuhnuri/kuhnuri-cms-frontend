@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import {create} from '../actions'
+import { push } from 'react-router-redux'
 
 class Create extends Component {
   render() {
@@ -50,7 +51,7 @@ class Create extends Component {
       filter: this.refs.filter.value,
       output: this.refs.output.value
     }
-    this.props.dispatch(create(data))
+    this.props.create()
   }
 }
 

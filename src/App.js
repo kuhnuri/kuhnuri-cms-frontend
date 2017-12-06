@@ -6,8 +6,9 @@ import Create from './containers/CreateNew'
 import Details from './components/Details'
 import {BrowserRouter as Router, Route} from 'react-router-dom'
 import { Provider } from 'react-redux'
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import reducers from './reducers'
+import thunk from 'redux-thunk'
 
 const initialState = {
   notes: [
@@ -26,7 +27,7 @@ const initialState = {
   ]
 }
 
-const store = createStore(reducers, initialState);
+const store = createStore(reducers, initialState, applyMiddleware(thunk));
 
 class App extends Component {
   render() {
