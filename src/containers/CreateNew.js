@@ -7,11 +7,9 @@ import { withRouter } from "react-router-dom"
 
 const API_URL = 'http://localhost:9000'
 
-// class CreateNew extends Component {
-
 const mapStateToProps = state => {
   return {
-    notes: state.notes
+    jobs: state.jobs
   }
 }
 
@@ -49,4 +47,3 @@ export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
 )(Create))
-// export default CreateNew

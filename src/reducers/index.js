@@ -1,10 +1,8 @@
 import { combineReducers } from 'redux'
-import notes from './notes'
+import jobs from './jobs'
 // import visibilityFilter from './visibilityFilter'
 
-const noteApp = combineReducers({
-  notes
+export default combineReducers({
+  jobs
   // visibilityFilter
 })
-
-export default noteApp

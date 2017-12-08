@@ -1,4 +1,4 @@
-const notes = (state = [], action) => {
+const jobs = (state = [], action) => {
   console.log(action)
   switch (action.type) {
     case 'CREATE':
@@ -12,14 +12,14 @@ const notes = (state = [], action) => {
         }
       ]
     case 'TOGGLE_TODO':
-      return state.map(note =>
-        (note.id === action.id) 
-          ? {...note, completed: !note.completed}
-          : note
+      return state.map(job =>
+        (job.id === action.id) 
+          ? {...job, completed: !job.completed}
+          : job
       )
     default:
       return state
   }
 }
 
-export default notes
+export default jobs

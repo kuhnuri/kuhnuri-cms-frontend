@@ -18,12 +18,12 @@ class List extends Component {
             </tr>
           </thead>
           <tbody>
-            {this.props.notes.map(note => (
-              <Status id={note.id} key={note.id}
-                      status={note.status}
-                      transtype={note.transtype}
-                      queueDuration={note.queueDuration}
-                      processDuration={note.processDuration}/>
+            {this.props.jobs.map(jobs => (
+              <Status id={jobs.id} key={jobs.id}
+                      status={jobs.status}
+                      transtype={jobs.transtype}
+                      queueDuration={jobs.queueDuration}
+                      processDuration={jobs.processDuration}/>
             ))}
           </tbody>
         </table>

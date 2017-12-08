@@ -13,7 +13,7 @@ import { routerMiddleware } from 'react-router-redux'
 import createHistory from 'history/createBrowserHistory';
 
 const initialState = {
-  notes: [
+  jobs: [
     {
       id: 'f397ec3b-1c66-4cbc-a758-f9db0711ae35',
       input: 'file:/Users/jelovirt/Work/dita-ot/src/main/docsrc/userguide.ditamap',

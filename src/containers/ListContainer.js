@@ -6,14 +6,15 @@ import List from '../components/List'
 const mapStateToProps = state => {
   console.log('mapStateToProps', state)
   return {
-    notes : state.notes
+    jobs : state.jobs
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    destroyNote : () => dispatch({
-      type : 'DESTROY_TODO'
+    remove : (id) => dispatch({
+      type : 'REMOVE',
+      id
     })
   }
 }
