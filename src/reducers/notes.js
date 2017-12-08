@@ -1,5 +1,5 @@
 const notes = (state = [], action) => {
-  console.log('reducer', action)
+  console.log(action)
   switch (action.type) {
     case 'CREATE':
       return [
@@ -12,10 +12,10 @@ const notes = (state = [], action) => {
         }
       ]
     case 'TOGGLE_TODO':
-      return state.map(todo =>
-        (todo.id === action.id) 
-          ? {...todo, completed: !todo.completed}
-          : todo
+      return state.map(note =>
+        (note.id === action.id) 
+          ? {...note, completed: !note.completed}
+          : note
       )
     default:
       return state

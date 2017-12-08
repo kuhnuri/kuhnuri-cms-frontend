@@ -49,9 +49,18 @@ class Create extends Component {
       input: this.refs.input.value,
       transtype: this.refs.transtype.value,
       filter: this.refs.filter.value,
-      output: this.refs.output.value
+      output: this.refs.output.value,
+      params: {}
     }
-    this.props.create()
+    this.props.create(data)
+    // dispatch((dispatch) => {
+    //   console.log('createNew dispatch')
+    //   setTimeout(() => {
+    //     console.log('after timeout')
+    //     dispatch(create(data))
+    //     this.props.history.push('/')
+    //   }, 5000)
+    // })
   }
 }
 

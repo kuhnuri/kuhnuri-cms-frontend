@@ -7,6 +7,7 @@ class Status extends Component {
       <tr>
         <td><Link to={'/details/' + this.props.id}>{this.props.id}</Link></td>
         <td>{this.props.status}</td>
+        <td>{this.props.transtype}</td>
         <td>{this.props.queueDuration}</td>
         <td>{this.props.processDuration}</td>
       </tr>
