@@ -1,26 +1,25 @@
 import { connect } from 'react-redux'
-import List from '../components/List'
-import { cancel, fetchAction } from '../actions'
+import Details from '../components/Details'
+import { fetchDetailsAction } from '../actions'
 import config from '../config'
 
 const mapStateToProps = state => {
   return {
-    jobs: state.jobs
+    job: state.job
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    cancel: (id) => cancel(id),
-    fetch: () =>
-      fetch(`${config.api.url}/api/v1/jobs`, {
+    fetch: (id) =>
+      fetch(`${config.api.url}/api/v1/job/${id}`, {
         headers: {
           'Accept': 'application/json'
         }
       })
       .then(response => response.json())
-      .then(list => {
-        dispatch(fetchAction(list))
+      .then(job => {
+        dispatch(fetchDetailsAction(job))
       })
   }
 }
@@ -28,4 +27,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(List)
+)(Details)

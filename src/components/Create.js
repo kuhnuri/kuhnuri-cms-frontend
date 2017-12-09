@@ -1,12 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
-import { create } from '../actions'
-import { push } from 'react-router-redux'
 
 class Create extends Component {
-  constructor(props) {
-    super(props)
-  }
   render() {
     return (
       <main className="create">
@@ -70,23 +65,13 @@ class Create extends Component {
     );
   }
   createNew() {
-    const data = {
+    this.props.create({
       input: this.input.value,
       transtype: this.transtype.value,
       filter: this.filter.value,
       output: this.output.value,
       params: {}
-    }
-    console.log('create', data)
-    this.props.create(data, this.props.history)
-    // dispatch((dispatch) => {
-    //   console.log('createNew dispatch')
-    //   setTimeout(() => {
-    //     console.log('after timeout')
-    //     dispatch(create(data))
-    //     this.props.history.push('/')
-    //   }, 5000)
-    // })
+    })
   }
 }
 

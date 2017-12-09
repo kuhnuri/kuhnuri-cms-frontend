@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-// import logo from './logo.svg';
 import './App.css';
 import ListContainer from './containers/ListContainer'
-import Create from './containers/CreateNew'
-import Details from './components/Details'
+import CreateNew from './containers/CreateNew'
+import DetailsContainer  from './containers/DetailsContainer'
+import Nav from './components/Nav'
 import { Router, Route } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware, compose } from 'redux';
@@ -13,32 +13,13 @@ import { routerMiddleware } from 'react-router-redux'
 import createHistory from 'history/createBrowserHistory';
 
 const initialState = {
-  jobs: [
-    {
-      id: 'f397ec3b-1c66-4cbc-a758-f9db0711ae35',
-      input: 'file:/Users/jelovirt/Work/dita-ot/src/main/docsrc/userguide.ditamap',
-      output: 'file:/Volumes/tmp/platform/out/',
-      transtype: 'pdf',
-      params: {},
-      status: 'queue',
-      priority: 0,
-      created: '2017-12-06T11:09:02.418Z',
-      processing: null,
-      finished: null
-    },
-    {
-      id: 'e508fd4e-1c66-4cbc-a758-f9db0711ae35',
-      input: 'file:/Users/jelovirt/Work/dita-ot/src/main/docsrc/userguide.ditamap',
-      output: 'file:/Volumes/tmp/platform/out/',
-      transtype: 'html5',
-      params: {},
-      status: 'queue',
-      priority: 0,
-      created: '2017-12-06T11:09:02.418Z',
-      processing: null,
-      finished: null
-    }
-  ]
+  job: {
+    id: null,
+    transtype: null,
+    input: null
+  },
+  jobs: [],
+  create: null
 }
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
@@ -56,9 +37,10 @@ class App extends Component {
       <Provider store={store}>
         <Router history={history}>
           <div>
+            <Nav />
             <Route exact path="/" component={ListContainer} />
-            <Route path="/create" component={Create} />
-            <Route path="/details/:id" component={Details} />
+            <Route path="/create" component={CreateNew} />
+            <Route path="/details/:id" component={DetailsContainer} />
           </div>
         </Router>
       </Provider>

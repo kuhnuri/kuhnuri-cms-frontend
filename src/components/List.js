@@ -1,8 +1,16 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom'
 import Status from './Status'
 
 class List extends Component {
+  componentDidMount() {
+    this.props.fetch()
+    this.interval = setInterval(() => this.props.fetch(), 5000)
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval)
+  }
+
   render() {
     return (
       <main className="List">
@@ -18,18 +26,15 @@ class List extends Component {
             </tr>
           </thead>
           <tbody>
-            {this.props.jobs.map(jobs => (
-              <Status id={jobs.id} key={jobs.id}
-                      status={jobs.status}
-                      transtype={jobs.transtype}
-                      queueDuration={jobs.queueDuration}
-                      processDuration={jobs.processDuration}/>
+            {this.props.jobs.map(job => (
+              <Status id={job.id} key={job.id}
+                status={job.status}
+                transtype={job.transtype}
+                queueDuration={job.queueDuration}
+                processDuration={job.processDuration} />
             ))}
           </tbody>
         </table>
-        <p>
-          <Link to="/create">New</Link>
-        </p>
       </main>
     );
   }

@@ -1,22 +1,21 @@
 import { connect } from 'react-redux'
 import Create from '../components/Create'
-import { create } from '../actions'
 import { push } from 'react-router-redux'
 import { create as createAction } from '../actions'
 import { withRouter } from "react-router-dom"
-
-const API_URL = 'http://localhost:9000'
+import config from '../config'
 
 const mapStateToProps = state => {
   return {
-    jobs: state.jobs
+    job: state.job
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
     create: (data) => {
-      fetch(`${API_URL}/api/v1/job`, {
+      // dispatch(requestCreate(body))
+      return fetch(`${config.api.url}/api/v1/job`, {
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json'
@@ -32,17 +31,7 @@ const mapDispatchToProps = dispatch => {
     }
   }
 }
-// this.props.dispatch((dispatch) => {
-//   dispatch(loading())
-//   console.log('createNew dispatch')
-//   setTimeout(() => {
-//     console.log('after timeout')
-//     dispatch(create(data))
-//     this.props.history.push('/')
-//   }, 5000)
-// })
 
-// }
 export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
