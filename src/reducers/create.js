@@ -4,7 +4,7 @@ const jobs = (state = {}, action) => {
     case 'CREATE':
       return {
         ...state,
-        id: action.id,
+        id: action.payload.id,
         status: 'WAITING',
         queueDuration: 0,
         processDuration: null

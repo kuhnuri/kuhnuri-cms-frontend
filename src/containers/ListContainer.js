@@ -12,7 +12,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     cancel: (id) => cancel(id),
-    fetch: () =>
+    loadJobs: (callback) =>
       fetch(`${config.api.url}/api/v1/jobs`, {
         headers: {
           'Accept': 'application/json'
@@ -21,6 +21,7 @@ const mapDispatchToProps = dispatch => {
       .then(response => response.json())
       .then(list => {
         dispatch(fetchAction(list))
+        callback()
       })
   }
 }

@@ -8,7 +8,7 @@ const jobs = (state = {
     case 'FETCH_DETAILS':
       return {
         ...state,
-        ...action.job
+        ...action.payload.job
       }
     default:
       return state

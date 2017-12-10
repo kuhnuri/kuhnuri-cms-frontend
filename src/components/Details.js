@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 
 class Details extends Component {
+  constructor(props) {
+    super(props)
+    this.state = { loading: true }
+  }
   componentDidMount() {
-    this.props.fetch(this.props.match.params.id)
-    this.interval = setInterval(() => this.props.fetch(this.props.match.params.id), 5000)
+    this.props.loadJob(this.props.match.params.id, () => this.setState({loading: false}))
+    this.interval = setInterval(() => this.props.loadJob(this.props.match.params.id), 5000)
   }
 
   componentWillUnmount() {
@@ -12,7 +16,7 @@ class Details extends Component {
 
   render() {
     return (
-      <main className="details">
+      <main className="details" className={this.state.loading ? 'loading': ''}>
         <h1>Details</h1>
         <dl>
           <dt>
@@ -37,7 +41,7 @@ class Details extends Component {
             <label>Filter</label>
           </dt>
           <dd>
-          {this.props.job.filter}
+            {this.props.job.filter}
           </dd>
           <dt>
             <label>Parameters</label>
@@ -58,13 +62,13 @@ class Details extends Component {
             <label>Output</label>
           </dt>
           <dd className="output">
-          {this.props.job.output}
+            {this.props.job.output}
           </dd>
           <dt>
             <label>Status</label>
           </dt>
           <dd className="status">
-          {this.props.job.status}
+            {this.props.job.status}
           </dd>
           <dt>
             <label>Started</label>

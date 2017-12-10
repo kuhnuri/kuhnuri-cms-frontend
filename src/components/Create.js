@@ -2,9 +2,13 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 
 class Create extends Component {
+  constructor(props) {
+    super(props)
+    this.state = { loading: false }
+  }
   render() {
     return (
-      <main className="create">
+      <main className="create" className={this.state.loading ? 'loading' : ''}>
         <h1>New Job</h1>
         <dl>
           <dt>
@@ -58,13 +62,16 @@ class Create extends Component {
           </dd>
         </dl>
         <p>
-          <button type="button" className="btn btn-default create" onClick={() => this.createNew()}>Create</button>
+          <button type="button" className="btn btn-default create"
+            disabled={this.state.loading}
+            onClick={() => this.createNew()}>Create</button>
           <Link to="/">Cancel</Link>
         </p>
       </main>
     );
   }
   createNew() {
+    this.setState({loading: true})
     this.props.create({
       input: this.input.value,
       transtype: this.transtype.value,

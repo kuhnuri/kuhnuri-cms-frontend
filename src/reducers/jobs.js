@@ -2,7 +2,7 @@
 const jobs = (state = [], action) => {
   switch (action.type) {
     case 'FETCH':
-      return action.jobs
+      return action.payload.jobs
     default:
       return state
   }

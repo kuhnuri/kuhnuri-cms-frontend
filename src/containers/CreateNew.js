@@ -15,7 +15,7 @@ const mapDispatchToProps = dispatch => {
   return {
     create: (data) => {
       // dispatch(requestCreate(body))
-      return fetch(`${config.api.url}/api/v1/job`, {
+      return setTimeout(() => fetch(`${config.api.url}/api/v1/job`, {
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json'
@@ -27,7 +27,7 @@ const mapDispatchToProps = dispatch => {
         .then(body => {
           dispatch(createAction(body))
           dispatch(push(`/details/${body.id}`))
-        })
+        }), 3000)
     }
   }
 }
