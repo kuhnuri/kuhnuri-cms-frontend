@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {duration} from '../utils'
 
 class Details extends Component {
   constructor(props) {
@@ -16,7 +17,7 @@ class Details extends Component {
 
   render() {
     return (
-      <main className="details" className={this.state.loading ? 'loading': ''}>
+      <main className={`details ${this.state.loading ? 'loading': ''}`}>
         <h1>Details</h1>
         <dl>
           <dt>
@@ -70,6 +71,10 @@ class Details extends Component {
           <dd className="status">
             {this.props.job.status}
           </dd>
+          <dt>
+            <label>Queue</label>
+          </dt>
+          <dd className="queued">{this.props.job.created}</dd>
           <dt>
             <label>Started</label>
           </dt>

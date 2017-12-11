@@ -8,7 +8,7 @@ class Create extends Component {
   }
   render() {
     return (
-      <main className="create" className={this.state.loading ? 'loading' : ''}>
+      <main className={`create ${this.state.loading ? 'loading' : ''}`}>
         <h1>New Job</h1>
         <dl>
           <dt>

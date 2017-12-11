@@ -4,10 +4,11 @@ import { push } from 'react-router-redux'
 import { create as createAction } from '../actions'
 import { withRouter } from "react-router-dom"
 import config from '../config'
+import { addDuration } from '../utils'
 
 const mapStateToProps = state => {
   return {
-    job: state.job
+    job: addDuration(state.job)
   }
 }
 

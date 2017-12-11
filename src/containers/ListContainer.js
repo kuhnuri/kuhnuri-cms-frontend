@@ -2,10 +2,11 @@ import { connect } from 'react-redux'
 import List from '../components/List'
 import { cancel, fetchAction } from '../actions'
 import config from '../config'
+import { addDuration } from '../utils'
 
 const mapStateToProps = state => {
   return {
-    jobs: state.jobs
+    jobs: state.jobs.map(addDuration)
   }
 }
 
@@ -21,7 +22,7 @@ const mapDispatchToProps = dispatch => {
       .then(response => response.json())
       .then(list => {
         dispatch(fetchAction(list))
-        callback()
+        callback && callback()
       })
   }
 }
