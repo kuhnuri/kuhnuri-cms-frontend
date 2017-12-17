@@ -1,29 +1,36 @@
 import { connect } from 'react-redux'
 import List from '../components/List'
-import { cancel, fetchAction } from '../actions'
+import { fetchAction, fetchNodeAction } from '../actions'
 import config from '../config'
-import { addDuration } from '../utils'
 
 const mapStateToProps = state => {
+  console.log('mapStateToProps', state)
   return {
-    jobs: state.jobs.map(addDuration)
+    tree: state.tree
+  }
+}
+
+const request = {
+  headers: {
+    'Accept': 'application/json'
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    cancel: (id) => cancel(id),
-    loadJobs: (callback) =>
-      fetch(`${config.api.url}/api/v1/jobs`, {
-        headers: {
-          'Accept': 'application/json'
-        }
-      })
-      .then(response => response.json())
-      .then(list => {
-        dispatch(fetchAction(list))
-        callback && callback()
-      })
+    loadJobs: (path, callback) =>
+      fetch(`${config.api.url}/api/v1/list/`, request)
+        .then(response => response.json())
+        .then(node => {
+          dispatch(fetchAction(node))
+          callback && callback()
+        }),
+    toggle: (path) =>
+      fetch(`${config.api.url}/api/v1/list/${path}`, request)
+        .then(response => response.json())
+        .then(list => {
+          dispatch(fetchNodeAction(path, list))
+        })
   }
 }
 

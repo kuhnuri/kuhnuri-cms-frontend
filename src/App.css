@@ -30,3 +30,11 @@
 .loading {
   opacity: 0.5;
 }
+
+#toc, #toc ul  {
+  list-style-type: none;
+}
+
+#toc li span {
+  cursor: pointer;
+}

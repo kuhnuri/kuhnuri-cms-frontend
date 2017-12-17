@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {duration} from '../utils'
+// import {duration} from '../utils'
 
 class Details extends Component {
   constructor(props) {

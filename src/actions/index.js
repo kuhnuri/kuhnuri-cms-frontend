@@ -1,5 +1,3 @@
-// import config from '../config'
-
 export const create = (job) => {
   return {
     type: 'CREATE',
@@ -27,12 +25,17 @@ export const remove = (id) => {
   }
 }
 
-export const fetchAction = (jobs) => {
+export const fetchAction = (node) => {
   return {
     type: 'FETCH',
-    payload: {
-      jobs
-    }
+    payload: node
+  }
+}
+
+export const fetchNodeAction = (path, file) => {
+  return {
+    type: 'FETCH_NODE',
+    payload: file
   }
 }
 

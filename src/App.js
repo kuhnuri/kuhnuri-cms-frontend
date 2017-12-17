@@ -13,13 +13,7 @@ import { routerMiddleware } from 'react-router-redux'
 import createHistory from 'history/createBrowserHistory';
 
 const initialState = {
-  job: {
-    id: null,
-    transtype: null,
-    input: null
-  },
-  jobs: [],
-  create: null
+  tree: {}
 }
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
