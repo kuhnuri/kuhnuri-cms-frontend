@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Dir from './Dir'
+import Tree from './Tree'
 
 class List extends Component {
   constructor(props) {
@@ -20,9 +20,7 @@ class List extends Component {
       <main className={this.state.loading ? 'loading' : ''}>
         <h1>Files</h1>
         {this.state.loading && <p>Loading...</p>}
-        <ul id="toc">
-          <Dir list={this.props.tree} toggle={this.props.toggle} />
-        </ul>
+        {!this.state.loading && <Tree node={this.props.tree} toggle={this.props.toggle} />}
       </main>
     );
   }

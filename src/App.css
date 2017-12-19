@@ -33,8 +33,13 @@
 
 #toc, #toc ul  {
   list-style-type: none;
+  padding-left: 1.5em;
 }
 
 #toc li span {
   cursor: pointer;
+}
+#toc span.controller {
+  display: inline-block;
+  width: 1.5em;
 }
