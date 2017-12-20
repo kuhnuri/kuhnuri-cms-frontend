@@ -1,16 +1,14 @@
-import React, { Component } from 'react';
-import './App.css';
-import ListContainer from './containers/ListContainer'
-import CreateNew from './containers/CreateNew'
-import DetailsContainer  from './containers/DetailsContainer'
+import React, { Component } from 'react'
+import Routes from './routes'
 import Nav from './components/Nav'
-import { Router, Route } from 'react-router-dom'
+import { Router } from 'react-router-dom'
 import { Provider } from 'react-redux'
-import { createStore, applyMiddleware, compose } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux'
 import reducers from './reducers'
 import thunk from 'redux-thunk'
 import { routerMiddleware } from 'react-router-redux'
-import createHistory from 'history/createBrowserHistory';
+import createHistory from 'history/createBrowserHistory'
+import './App.css'
 
 const initialState = {
   tree: {}
@@ -23,7 +21,7 @@ const store = createStore(
   reducers,
   initialState,
   composeEnhancers(applyMiddleware(thunk), applyMiddleware(middleware))
-);
+)
 
 class App extends Component {
   render() {
@@ -32,14 +30,12 @@ class App extends Component {
         <Router history={history}>
           <div>
             <Nav />
-            <Route exact path="/" component={ListContainer} />
-            <Route path="/create" component={CreateNew} />
-            <Route path="/details/:id" component={DetailsContainer} />
+            <Routes />
           </div>
         </Router>
       </Provider>
-    );
+    )
   }
 }
 
-export default App;
+export default App

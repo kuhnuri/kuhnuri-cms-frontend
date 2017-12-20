@@ -39,6 +39,13 @@ export const fetchNodeAction = (path, file) => {
   }
 }
 
+export const toggleNodeAction = (path) => {
+  return {
+    type: 'TOGGLE_NODE',
+    payload: path
+  }
+}
+
 export const fetchDetailsAction = (job) => {
   return {
     type: 'FETCH_DETAILS',

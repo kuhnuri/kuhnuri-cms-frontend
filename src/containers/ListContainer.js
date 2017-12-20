@@ -1,10 +1,9 @@
 import { connect } from 'react-redux'
 import List from '../components/List'
-import { fetchAction, fetchNodeAction } from '../actions'
+import { fetchAction, fetchNodeAction, toggleNodeAction } from '../actions'
 import config from '../config'
 
 const mapStateToProps = state => {
-  console.log('mapStateToProps', state)
   return {
     tree: state.tree
   }
@@ -25,12 +24,17 @@ const mapDispatchToProps = dispatch => {
           dispatch(fetchAction(node))
           callback && callback()
         }),
-    toggle: (path) =>
-      fetch(`${config.api.url}/api/v1/list/${path}`, request)
-        .then(response => response.json())
-        .then(list => {
-          dispatch(fetchNodeAction(path, list))
-        })
+    toggle: (node) => {
+      if (!!node.expanded) {
+        dispatch(toggleNodeAction(node.path))
+      } else {
+        return fetch(`${config.api.url}/api/v1/list/${node.path}`, request)
+          .then(response => response.json())
+          .then(list => {
+            dispatch(fetchNodeAction(node.path, list))
+          })
+      }
+    }
   }
 }
 

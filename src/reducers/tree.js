@@ -1,31 +1,4 @@
-const addStateFields = (tree, state) => {
-  console.log('addStateFields', tree)
-  let t = {
-    ...tree,
-    expanded: state
-  }
-  return t
-}
-
-/**
- * Walk whole tree to update a single node
- */
-const addNode = (tree, node) => {
-  return tree.path === node.path
-    ? addStateFields(node, true)
-    : (tree.children
-      ? {
-        ...tree,
-        children: tree.children.map(child => addNode(child, node))
-      }
-      : tree)
-  // return {
-  //   tree,
-  //   children: tree.children.map(child =>
-  //     child.path === node.path ? node : addNode(child)
-  //   )
-  // }
-}
+import { addStateFields, addNode, toggleNode } from '../utils/tree'
 
 const tree = (state = {}, action) => {
   switch (action.type) {
@@ -39,6 +12,8 @@ const tree = (state = {}, action) => {
         ...state,
         children: state.children.map(child => addNode(child, action.payload))
       }
+    case 'TOGGLE_NODE':
+      return toggleNode(state, action.payload)
     default:
       return state
   }
