@@ -1,5 +1,6 @@
 import { connect } from 'react-redux'
 import List from '../components/List'
+import {push} from 'react-router-redux'
 import { fetchAction, fetchNodeAction, toggleNodeAction } from '../actions'
 import config from '../config'
 
@@ -34,6 +35,15 @@ const mapDispatchToProps = dispatch => {
             dispatch(fetchNodeAction(node.path, list))
           })
       }
+    },
+    open: (path) => {
+      console.log('open', path)
+      // fetch(`${config.api.url}/api/v1/list/${node.path}`, request)
+      // .then(response => response.json())
+      // .then(contents => {
+      //   dispatch(showAction(contents))
+      // })
+      dispatch(push(`/details/${path}`))
     }
   }
 }

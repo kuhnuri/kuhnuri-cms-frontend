@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Routes from './routes'
 import Nav from './components/Nav'
+import ListContainer from './containers/ListContainer'
 import { Router } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware, compose } from 'redux'
@@ -30,6 +31,7 @@ class App extends Component {
         <Router history={history}>
           <div>
             <Nav />
+            <ListContainer/>
             <Routes />
           </div>
         </Router>

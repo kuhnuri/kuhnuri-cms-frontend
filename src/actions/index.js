@@ -54,3 +54,8 @@ export const fetchDetailsAction = (job) => {
     }
   }
 }
+
+export const showAction = (contents) => ({
+  type: 'SHOW',
+  payload: contents
+})
