@@ -30,7 +30,7 @@ class Details extends Component {
           <dt>Source</dt>
           <dd>{this.props.metadata.src}</dd>
         </dl>
-        <h2>Content</h2>
+        <h2>Preview</h2>
         {!!this.props.contents
           ? <XmlPreview contents={this.props.contents} />
           : <ImagePreview src={this.props.metadata.src} alt={this.props.metadata.title} />

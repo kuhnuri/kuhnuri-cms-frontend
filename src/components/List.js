@@ -17,7 +17,7 @@ class List extends Component {
 
   render() {
     return (
-      <main className={`col ${this.state.loading ? 'loading' : ''}`}>
+      <main className={`col-4 ${this.state.loading ? 'loading' : ''}`}>
         <h2>Content Manager</h2>
         {this.state.loading && <p>Loading...</p>}
         {!this.state.loading && <Tree node={this.props.tree} toggle={this.props.toggle} open={this.props.open} />}

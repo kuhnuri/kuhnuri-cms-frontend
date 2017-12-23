@@ -4,7 +4,7 @@ import CreateNew from '../containers/CreateNew'
 import DetailsContainer from '../containers/DetailsContainer'
 
 const Routes = () =>
-  <div>
+  <div className="col-8">
     <Switch>
       <Route path="/create" component={CreateNew} />
       <Route path="/details/:id+" component={DetailsContainer} />
