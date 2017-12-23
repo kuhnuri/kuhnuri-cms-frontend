@@ -17,7 +17,7 @@ class List extends Component {
 
   render() {
     return (
-      <main className={this.state.loading ? 'loading' : ''}>
+      <main className={`col ${this.state.loading ? 'loading' : ''}`}>
         <h1>Files</h1>
         {this.state.loading && <p>Loading...</p>}
         {!this.state.loading && <Tree node={this.props.tree} toggle={this.props.toggle} open={this.props.open} />}

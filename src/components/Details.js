@@ -6,11 +6,14 @@ class Details extends Component {
     this.state = { loading: true }
   }
   componentDidMount() {
-    this.props.load(this.props.match.params.id, () => this.state.loading = false)
+    this.props.load(this.props.match.params.id, () => this.setState({ loading: false }))
   }
 
-  componentDidUpdate() {
-    this.props.load(this.props.match.params.id, () => this.state.loading = false)
+  componentWillReceiveProps(nextProps){
+    if (this.props.match.params.id !== nextProps.match.params.id) {
+      this.setState({ loading: true })
+      this.props.load(this.props.match.params.id, () => this.setState({ loading: false }))
+    }
   }
 
   render() {

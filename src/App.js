@@ -31,8 +31,10 @@ class App extends Component {
         <Router history={history}>
           <div>
             <Nav />
-            <ListContainer/>
-            <Routes />
+            <div className="row">
+              <ListContainer/>
+              <Routes />
+            </div>
           </div>
         </Router>
       </Provider>
