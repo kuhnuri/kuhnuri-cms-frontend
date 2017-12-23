@@ -55,7 +55,17 @@ export const fetchDetailsAction = (job) => {
   }
 }
 
-export const showAction = (contents) => ({
+export const showAction = (metadata, contents) => ({
   type: 'SHOW',
-  payload: contents
+  payload: {
+    metadata,
+    contents
+  }
+})
+
+export const showBinaryAction = (metadata) => ({
+  type: 'SHOW_BINARY',
+  payload: {
+    metadata
+  }
 })

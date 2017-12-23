@@ -3,7 +3,15 @@ const jobs = (state = { contents: null }, action) => {
     case 'SHOW':
       return {
         ...state,
-        contents: action.payload
+        metadata: action.payload.metadata,
+        contents: action.payload.contents
+      }
+    case 'SHOW_BINARY':
+    console.log('action', action)
+      return {
+        ...state,
+        metadata: action.payload.metadata,
+        contents: undefined
       }
     default:
       return state

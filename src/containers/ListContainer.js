@@ -37,7 +37,7 @@ const mapDispatchToProps = dispatch => {
       }
     },
     open: (path) => {
-      console.log('open', path)
+      console.log('open from file browser', path)
       // fetch(`${config.api.url}/api/v1/list/${node.path}`, request)
       // .then(response => response.json())
       // .then(contents => {
