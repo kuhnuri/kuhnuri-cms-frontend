@@ -7,7 +7,6 @@ const jobs = (state = { contents: null }, action) => {
         contents: action.payload.contents
       }
     case 'SHOW_BINARY':
-    console.log('action', action)
       return {
         ...state,
         metadata: action.payload.metadata,

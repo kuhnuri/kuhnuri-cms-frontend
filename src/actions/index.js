@@ -32,10 +32,27 @@ export const fetchAction = (node) => {
   }
 }
 
-export const fetchNodeAction = (path, file) => {
+export const fetchProjectAction = (path, file) => {
+  return {
+    type: 'FETCH_PROJECT',
+    payload: file
+  }
+}
+
+export const toggleProjectAction = (path) => {
+  return {
+    type: 'TOGGLE_PROJECT',
+    payload: path
+  }
+}
+
+export const fetchNodeAction = (project, file) => {
   return {
     type: 'FETCH_NODE',
-    payload: file
+    payload: {
+      project,
+      file
+    }
   }
 }
 

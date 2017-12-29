@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
-import List from '../components/List'
-import {push} from 'react-router-redux'
+import Project from '../components/Project'
+import { push } from 'react-router-redux'
 import { fetchAction, fetchNodeAction, toggleNodeAction } from '../actions'
 import config from '../config'
 
@@ -26,24 +26,22 @@ const mapDispatchToProps = dispatch => {
           callback && callback()
         }),
     toggle: (node) => {
-      if (!!node.expanded) {
-        dispatch(toggleNodeAction(node.path))
-      } else {
-        return fetch(`${config.api.url}/api/v1/list/${node.path}`, request)
-          .then(response => response.json())
-          .then(list => {
-            dispatch(fetchNodeAction(node.path, list))
-          })
-      }
+      dispatch(toggleNodeAction(node.path))
     },
-    open: (path) => {
-      console.log('open from file browser', path)
+    loadAndToggle: (project, node) => {
+      return fetch(`${config.api.url}/api/v1/list/${project.path}/${node.path}`, request)
+        .then(response => response.json())
+        .then(list => {
+          dispatch(fetchNodeAction(project.path, list))
+        })
+    },
+    open: (project, path) => {
       // fetch(`${config.api.url}/api/v1/list/${node.path}`, request)
       // .then(response => response.json())
       // .then(contents => {
       //   dispatch(showAction(contents))
       // })
-      dispatch(push(`/details/${path}`))
+      dispatch(push(`/details/${project}/${path}`))
     }
   }
 }
@@ -51,4 +49,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(List)
+)(Project)
