@@ -28,7 +28,12 @@ const tree = (state = {}, action) => {
           : child)
       }
     case 'TOGGLE_NODE':
-      return toggleNode(state, action.payload)
+      return {
+        ...state,
+        projects: state.projects.map(child => child.path === action.payload.project
+          ? toggleNode(child, action.payload.file)
+          : child)
+      }
     default:
       return state
   }

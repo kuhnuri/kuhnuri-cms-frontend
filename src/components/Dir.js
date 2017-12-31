@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 
 class Dir extends Component {
   toggle() {
-    !!this.props.children
-      ? this.props.toggle(this.props.node)
-      : this.props.loadAndToggle(this.props.project, this.props.node)
+    if (!!this.props.children || this.props.node.expanded) {
+      this.props.toggle(this.props.project, this.props.node)
+    } else {
+      this.props.loadAndToggle(this.props.project, this.props.node)
+    }
   }
 
   render() {

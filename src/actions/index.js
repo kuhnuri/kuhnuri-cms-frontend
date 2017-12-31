@@ -56,10 +56,13 @@ export const fetchNodeAction = (project, file) => {
   }
 }
 
-export const toggleNodeAction = (path) => {
+export const toggleNodeAction = (project, file) => {
   return {
     type: 'TOGGLE_NODE',
-    payload: path
+    payload: {
+      project,
+      file
+    }
   }
 }
 

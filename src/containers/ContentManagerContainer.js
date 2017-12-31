@@ -18,7 +18,7 @@ const request = {
 
 const mapDispatchToProps = dispatch => {
   return {
-    load: (path, callback) =>
+    loadProjects: (path, callback) =>
       fetch(`${config.api.url}/api/v1/list/`, request)
         .then(response => response.json())
         .then(node => {

@@ -25,8 +25,8 @@ const mapDispatchToProps = dispatch => {
           dispatch(fetchAction(node))
           callback && callback()
         }),
-    toggle: (node) => {
-      dispatch(toggleNodeAction(node.path))
+    toggle: (project, node) => {
+      dispatch(toggleNodeAction(project.path, node.path))
     },
     loadAndToggle: (project, node) => {
       return fetch(`${config.api.url}/api/v1/list/${project.path}/${node.path}`, request)

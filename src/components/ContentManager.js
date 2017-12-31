@@ -7,7 +7,7 @@ class ContentManager extends Component {
     this.state = { loading: true }
   }
   componentDidMount() {
-    this.props.load(undefined, () => this.setState({ loading: false }))
+    this.props.loadProjects(undefined, () => this.setState({ loading: false }))
     // this.interval = setInterval(this.props.loadJobs, 5000)
   }
 
