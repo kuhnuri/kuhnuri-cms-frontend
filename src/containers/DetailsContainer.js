@@ -21,11 +21,7 @@ const mapDispatchToProps = dispatch => {
           fetch(contentsUrl).then(response => response.text())
         ])
           .then(values => {
-            const metadata = {
-              ...values[0],
-              created: new Date(values[0].created),
-              src: contentsUrl
-            }
+            const metadata = toMetadata(values[0], contentsUrl)
             const contents = values[1]
             dispatch(showAction(metadata, contents))
             callback()
@@ -33,7 +29,8 @@ const mapDispatchToProps = dispatch => {
       } else {
         return fetch(metadataUrl)
           .then(response => response.json())
-          .then(metadata => {
+          .then(value => {
+            const metadata = toMetadata(value, contentsUrl)
             dispatch(showBinaryAction(metadata))
             callback()
           })
@@ -41,6 +38,13 @@ const mapDispatchToProps = dispatch => {
     }
   }
 }
+
+const toMetadata = (metadata, src) => ({
+  ...metadata,
+  created: new Date(metadata.created),
+  modified: (!!metadata.modified ? new Date(metadata.modified) : undefined),
+  src
+})
 
 export default connect(
   mapStateToProps,

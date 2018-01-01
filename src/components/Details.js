@@ -33,8 +33,12 @@ class Details extends Component {
           <dd>{this.props.metadata.src}</dd>
           <dt>Author</dt>
           <dd>{this.props.metadata.author}</dd>
+          {this.props.metadata.editor && <dt>Editor</dt>}
+          {this.props.metadata.editor && <dd>{this.props.metadata.editor}</dd>}
           <dt>Created</dt>
           <dd>{this.props.metadata.created.toString()}</dd>
+          {this.props.metadata.modified && <dt>Modified</dt>}
+          {this.props.metadata.modified && <dd>{this.props.metadata.modified.toString()}</dd>}
         </dl>
         <h2>Preview</h2>
         {!!this.props.contents
