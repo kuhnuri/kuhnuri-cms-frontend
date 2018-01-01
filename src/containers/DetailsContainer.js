@@ -13,21 +13,30 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     load: (id, callback) => {
-      const metadata = {
-        path: id,
-        src: `${config.api.url}/api/v1/file/${id}`,
-        title: id
-      }
+      const metadataUrl = `${config.api.url}/api/v1/info/${id}`
+      const contentsUrl = `${config.api.url}/api/v1/file/${id}`
       if (id.match(/\.(dita|ditamap|xml)$/)) {
-        return fetch(metadata.src)
-          .then(response => response.text())
-          .then(contents => {
+        return Promise.all([
+          fetch(metadataUrl).then(response => response.json()),
+          fetch(contentsUrl).then(response => response.text())
+        ])
+          .then(values => {
+            const metadata = {
+              ...values[0],
+              created: new Date(values[0].created),
+              src: contentsUrl
+            }
+            const contents = values[1]
             dispatch(showAction(metadata, contents))
             callback()
           })
       } else {
-        dispatch(showBinaryAction(metadata))
-        callback()
+        return fetch(metadataUrl)
+          .then(response => response.json())
+          .then(metadata => {
+            dispatch(showBinaryAction(metadata))
+            callback()
+          })
       }
     }
   }

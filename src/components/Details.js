@@ -25,10 +25,16 @@ class Details extends Component {
       return <main className={`details ${(!!this.state.loading ? 'loading' : 'no-loading')}`}>
         <h2>Metadata</h2>
         <dl>
+          <dt>Title</dt>
+          <dd>{this.props.metadata.name}</dd>
           <dt>Path</dt>
           <dd>{this.props.metadata.path}</dd>
           <dt>Source</dt>
           <dd>{this.props.metadata.src}</dd>
+          <dt>Author</dt>
+          <dd>{this.props.metadata.author}</dd>
+          <dt>Created</dt>
+          <dd>{this.props.metadata.created.toString()}</dd>
         </dl>
         <h2>Preview</h2>
         {!!this.props.contents
