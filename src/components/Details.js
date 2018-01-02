@@ -20,32 +20,34 @@ class Details extends Component {
 
   render() {
     if (this.state.loading) {
-      return <p>Loading</p>
-    } else {
-      return <main className={`details ${(!!this.state.loading ? 'loading' : 'no-loading')}`}>
-        <h2>Metadata</h2>
-        <dl>
-          <dt>Title</dt>
-          <dd>{this.props.metadata.name}</dd>
-          <dt>Path</dt>
-          <dd>{this.props.metadata.path}</dd>
-          <dt>Source</dt>
-          <dd>{this.props.metadata.src}</dd>
-          <dt>Author</dt>
-          <dd>{this.props.metadata.author}</dd>
-          {this.props.metadata.editor && <dt>Editor</dt>}
-          {this.props.metadata.editor && <dd>{this.props.metadata.editor}</dd>}
-          <dt>Created</dt>
-          <dd>{this.props.metadata.created.toString()}</dd>
-          {this.props.metadata.modified && <dt>Modified</dt>}
-          {this.props.metadata.modified && <dd>{this.props.metadata.modified.toString()}</dd>}
-        </dl>
-        <h2>Preview</h2>
-        {!!this.props.contents
-          ? <XmlPreview contents={this.props.contents} />
-          : <ImagePreview src={this.props.metadata.src} alt={this.props.metadata.title} />
-        }
+      return <main className={`col-8 details ${(!!this.state.loading ? 'loading' : '')}`}>
+        <p>Loading</p>
       </main>
+    } else {
+      return <main className={`col-8 details ${(!!this.state.loading ? 'loading' : '')}`}>
+          <h2>Metadata</h2>
+          <dl>
+            <dt>Title</dt>
+            <dd>{this.props.metadata.name}</dd>
+            <dt>Path</dt>
+            <dd>{this.props.metadata.path}</dd>
+            <dt>Source</dt>
+            <dd>{this.props.metadata.src}</dd>
+            <dt>Author</dt>
+            <dd>{this.props.metadata.author}</dd>
+            {this.props.metadata.editor && <dt>Editor</dt>}
+            {this.props.metadata.editor && <dd>{this.props.metadata.editor}</dd>}
+            <dt>Created</dt>
+            <dd>{this.props.metadata.created.toString()}</dd>
+            {this.props.metadata.modified && <dt>Modified</dt>}
+            {this.props.metadata.modified && <dd>{this.props.metadata.modified.toString()}</dd>}
+          </dl>
+          <h2>Preview</h2>
+          {!!this.props.contents
+            ? <XmlPreview contents={this.props.contents} />
+            : <ImagePreview src={this.props.metadata.src} alt={this.props.metadata.title} />
+          }
+        </main>
     }
   }
 }

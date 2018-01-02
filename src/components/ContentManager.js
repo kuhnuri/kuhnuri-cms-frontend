@@ -7,17 +7,17 @@ class ContentManager extends Component {
     this.state = { loading: true }
   }
   componentDidMount() {
-    this.props.loadProjects(undefined, () => this.setState({ loading: false }))
-    // this.interval = setInterval(this.props.loadJobs, 5000)
+    this.props.loadProjects(undefined,
+      () => this.props.match.params.id
+        ? this.props.loadAllAndToggle(this.props.match.params.id,
+          () => this.setState({ loading: false }))
+        : this.setState({ loading: false })
+    )
   }
-
-  // componentWillUnmount() {
-  //   clearInterval(this.interval)
-  // }
 
   render() {
     return (
-      <main className={`col-4 ${this.state.loading ? 'loading' : ''}`}>
+      <nav className={`col-4 ${this.state.loading ? 'loading' : ''}`}>
         <h2>Content Manager</h2>
         {this.state.loading && <p>Loading...</p>}
         {!this.state.loading &&
@@ -27,15 +27,12 @@ class ContentManager extends Component {
                 <span onClick={() => !!project.children ? this.props.toggle(project) : this.props.loadAndToggle(project)}
                   className={'controller ' + (project.expanded ? 'expanded' : 'collapsed')}>[{project.expanded ? '-' : '+'}]</span>
                 <span>{project.name}</span>
-                {project.expanded &&
-                  // <ul>{project.children.map(file => <ListContainer key={file.path} project={project} {...this.props} />)}</ul>
-                  <Project project={project} />
-                }
+                {project.expanded && <Project project={project} />}
               </li>)
             )}
           </ul>
         }
-      </main>
+      </nav>
     );
   }
 }

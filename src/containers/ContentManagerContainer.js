@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import ContentManager from '../components/ContentManager'
 import { push } from 'react-router-redux'
-import { fetchAction, fetchProjectAction, toggleProjectAction } from '../actions'
+import { fetchAction, fetchNodeAction, toggleProjectAction } from '../actions'
 import config from '../config'
 
 const mapStateToProps = state => {
@@ -28,12 +28,23 @@ const mapDispatchToProps = dispatch => {
     toggle: (node) => {
       dispatch(toggleProjectAction(node.path))
     },
-    loadAndToggle: (node) => {
-      return fetch(`${config.api.url}/api/v1/list/${node.path}`, request)
-        .then(response => response.json())
-        .then(list => {
-          dispatch(fetchProjectAction(node.path, list))
+    loadAllAndToggle: (path, callback) => {
+      const tokens = path.split('/')
+      const project = tokens[0]
+      const steps = tokens
+        .slice(1, tokens.length - 1)
+        .reduce((acc, cur) => acc.concat(acc.length === 0 ? cur : `${acc[acc.length - 1]}/${cur}`), [])
+      Promise.all(steps.map(path =>
+        fetch(`${config.api.url}/api/v1/list/${project}/${path}`, request)
+          .then(response => response.json()))
+      )
+        .then(values => {
+          dispatch(toggleProjectAction(project))
+          values.forEach((list) => {
+            dispatch(fetchNodeAction(project, list))
+          })
         })
+        .then(callback)
     },
     open: (path) => {
       dispatch(push(`/details/${path}`))

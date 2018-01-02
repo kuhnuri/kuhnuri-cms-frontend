@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import Routes from './routes'
 import Nav from './components/Nav'
-import ContentManager from './containers/ContentManagerContainer'
 import { Router } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware, compose } from 'redux'
@@ -32,7 +31,6 @@ class App extends Component {
           <div>
             <Nav />
             <div className="row">
-              <ContentManager/>
               <Routes />
             </div>
           </div>
