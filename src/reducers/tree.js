@@ -1,4 +1,4 @@
-import { addStateFields, addNode, toggleNode } from '../utils/tree'
+import { addStateFields, addNode, toggleNode, activateNode } from '../utils/tree'
 
 const tree = (state = {}, action) => {
   switch (action.type) {
@@ -34,8 +34,16 @@ const tree = (state = {}, action) => {
           ? toggleNode(child, action.payload.file)
           : child)
       }
+    case 'ACTIVATE_NODE':
     default:
-      return state
+      // XXX
+      if (!state.projects) return state
+      return {
+        ...state,
+        projects: state.projects.map(child => child.path === action.payload.project
+          ? activateNode(child, action.payload.file)
+          : child)
+      }
   }
 }
 

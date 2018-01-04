@@ -1,7 +1,6 @@
 import { connect } from 'react-redux'
 import ContentManager from '../components/ContentManager'
-import { push } from 'react-router-redux'
-import { fetchAction, fetchNodeAction, toggleProjectAction } from '../actions'
+import { fetchAction, fetchNodeAction, toggleProjectAction, activateNodeAction } from '../actions'
 import config from '../config'
 
 const mapStateToProps = state => {
@@ -46,8 +45,12 @@ const mapDispatchToProps = dispatch => {
         })
         .then(callback)
     },
-    open: (path) => {
-      dispatch(push(`/details/${path}`))
+    activate: (path) => {
+      const tokens = path.split('/')
+      const project = tokens[0]
+      tokens.shift()
+      console.log('activate', project, tokens.join('/'))
+      dispatch(activateNodeAction(project, tokens.join('/')))
     }
   }
 }

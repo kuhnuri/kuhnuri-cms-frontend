@@ -13,7 +13,10 @@ class Dir extends Component {
     if (this.props.node.type === 'DIRECTORY') {
       return (
         <li>
-          <span onClick={() => this.toggle()} className={'controller ' + (this.props.node.expanded ? 'expanded' : 'collapsed')}>
+          <span onClick={() => this.toggle()} className={[
+            'controller',
+            this.props.node.expanded ? 'expanded' : 'collapsed'
+          ].join(' ')}>
             [{this.props.node.expanded ? '-' : '+'}]</span>
           <span>{this.props.node.name}</span>
           {(this.props.node.expanded && this.props.node.children) &&
@@ -23,7 +26,9 @@ class Dir extends Component {
       )
     } else {
       return (
-        <li>
+        <li className={[
+          this.props.node.active ? 'active' : null
+        ].join(' ')}>
           <span className={'controller'}>&nbsp;&nbsp;&nbsp;</span>
           <span onClick={() => this.props.open(this.props.project.path, this.props.node.path)}>{this.props.node.name}</span>
         </li>

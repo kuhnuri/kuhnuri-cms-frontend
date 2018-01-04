@@ -10,9 +10,18 @@ class ContentManager extends Component {
     this.props.loadProjects(undefined,
       () => this.props.match.params.id
         ? this.props.loadAllAndToggle(this.props.match.params.id,
-          () => this.setState({ loading: false }))
+          () => {
+            this.props.activate(this.props.match.params.id)
+            this.setState({ loading: false })
+          })
         : this.setState({ loading: false })
     )
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.match.params.id !== nextProps.match.params.id) {
+      this.props.activate(nextProps.match.params.id)
+    }
   }
 
   render() {

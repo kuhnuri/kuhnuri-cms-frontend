@@ -89,3 +89,11 @@ export const showBinaryAction = (metadata) => ({
     metadata
   }
 })
+
+export const activateNodeAction = (project, file) => ({
+  type: 'ACTIVATE_NODE',
+  payload: {
+    project,
+    file
+  }
+})

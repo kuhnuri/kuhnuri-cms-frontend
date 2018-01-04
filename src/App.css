@@ -43,3 +43,7 @@
   display: inline-block;
   width: 1.5em;
 }
+
+#toc li.active > span {
+  font-weight: bold;
+}
