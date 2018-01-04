@@ -49,7 +49,6 @@ const mapDispatchToProps = dispatch => {
       const tokens = path.split('/')
       const project = tokens[0]
       tokens.shift()
-      console.log('activate', project, tokens.join('/'))
       dispatch(activateNodeAction(project, tokens.join('/')))
     }
   }
